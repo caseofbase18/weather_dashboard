@@ -41,7 +41,6 @@
     display: table;
   }
 
-
   h1 {
     text-align: center;
     background-color: blue;
@@ -53,9 +52,7 @@
     margin-left: 5px;
   }
 
-  
-
-  #city-stats {
+  .city-stats {
     border: 1px solid black;
     width: 90%;
     padding-left: 10px;
@@ -65,9 +62,11 @@
 
   li {
     list-style: none;
-   
+    border: 1px solid grey;
+    background: whitesmoke;
+    width: 75%;
+    padding-left: 5px;
   }
-
 
   #day1 {
     border: 1px solid black;
