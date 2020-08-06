@@ -4,34 +4,58 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" />
     <link rel="stylesheet" href="./assets/style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=PT+Serif&display=swap" rel="stylesheet">
     <title>My Weather Dashboard</title>
 </head>
 
 <body>
+    <h1>Weather Dashboard</h1>
+    <h4>Search for a City:</h4>
 
-    <div>
-        <h3>Search for a City...</h3>
-        <form class="example" action="action_page.php">
-            <input id= "city-name" type="text" placeholder="Search..." name="search">
-            <button type="submit" id="city-search"><i class="fa fa-search"></i></button>
-        </form>
-        <ul id="list"></ul>
-
+    <div class="row">
+        <div class="col-4">
+            <div class="container">
+                <form class="example" action="action_page.php">
+                    <input id="city-name" type="text" placeholder="Search..." name="search">
+                    <button type="submit" id="city-search"><i class="fa fa-search"></i></button>
+                </form>
+                <ul id="list"></ul>
+            </div>
+        </div>
+        <div class="col-8">
+            <!-- div for city, temp, humidity, wind speed, uvi-->
+            <div id="city-stats"></div>
+        </div>
     </div>
-        
 
-    <!-- div for city, temp, humidity, wind speed, uvi-->
-    <div id= "city-stats">
-
-
+    
+    <div id="five-days">
+        <div class= "row">
+            <div class="col-2">
+                <h4>5-Day Forecast:</h4>
+            </div>
+            <div class="col-2">
+                <ul id="day1"></ul>
+            </div>
+            <div class= "col-2">
+                <ul id="day2"></ul>
+            </div>
+            <div class= "col-2">
+                <ul id="day3"></ul>
+            </div>
+            <div class= "col-2">
+                <ul id="day4"></ul>
+            </div>
+            <div class="col-2">
+                <ul id="day5"></ul>
+            </div>
+        </div>
+           
     </div>
 
-    <!--div for 5 day forecast-->
-    <div>
-
-    </div>
 
 
 
@@ -39,6 +63,7 @@
 
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.27.0/moment.min.js"></script>
     <script src="./assets/script.js"></script>
 </body>
 
