@@ -29,7 +29,7 @@ function historyButtonMaker() {
 historyButtonMaker();
 
 
-$(".previous-search").click(function (event) {
+$(document).on("click", ".previous-search", function (event) {
     event.preventDefault();
     var city = $(this).text();
     console.log(city);
@@ -101,6 +101,11 @@ function uvIndex(lat, lon) {
 
 // gets five day forecast for searched
 function fiveDayForecast(fiveday) {
+    $("#day1").empty();
+    $("#day2").empty();
+    $("#day3").empty();
+    $("#day4").empty();
+    $("#day5").empty();
 
     var queryURL = `https://api.openweathermap.org/data/2.5/forecast?q=${fiveday}&appid=${apiKey}`;
 

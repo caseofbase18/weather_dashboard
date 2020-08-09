@@ -52,6 +52,10 @@
     margin-left: 5px;
   }
 
+  #list {
+    margin-right: 25%;
+  }
+
   .city-stats {
     border: 1px solid black;
     width: 90%;
