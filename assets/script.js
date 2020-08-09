@@ -1,4 +1,10 @@
+var apiKey = "dd7f8b34000563dacdc6cada582ea1cf";
 var cityNames = JSON.parse(localStorage.getItem("search_history")) || [];
+
+if (cityNames.length > 0) {
+    getForecast(cityNames[cityNames.length-1]);
+    fiveDayForecast(cityNames[cityNames.length-1]);
+}
 
 // this function allows the user to search for the cities and stores the cities into local storage
 $("#city-search").click(function (event) {
@@ -9,21 +15,27 @@ $("#city-search").click(function (event) {
     localStorage.setItem("search_history", JSON.stringify(cityNames));
     historyButtonMaker();
     fiveDayForecast(city);
-
 })
 
 // this function allows the user to refresh the city while appending searched cities
 function historyButtonMaker() {
     $("#list").empty();
     for (var i = 0; i < cityNames.length; i++) {
-        var listCities = $("<li>").text(cityNames[i]);
+        var listCities = $("<button class='previous-search'>").text(cityNames[i]);
 
         $("#list").append(listCities);
     }
 }
 historyButtonMaker();
 
-var apiKey = "dd7f8b34000563dacdc6cada582ea1cf";
+
+$(".previous-search").click(function (event) {
+    event.preventDefault();
+    var city = $(this).text();
+    console.log(city);
+    getForecast(city);
+    fiveDayForecast(city);
+})
 
 // gets forecast of city
 function getForecast(cityname) {
@@ -35,6 +47,8 @@ function getForecast(cityname) {
         method: "GET"
     }).then(function (response) {
         console.log(response);
+
+        $(".city-stats").empty();
 
         var kelvinTemp = response.main.temp;
         var farTemp = (kelvinTemp - 273.15) * 1.80 + 32;
@@ -57,7 +71,7 @@ function getForecast(cityname) {
 // gets UVI for city
 function uvIndex(lat, lon) {
 
-    var queryURL = `http://api.openweathermap.org/data/2.5/uvi?appid=${apiKey}&lat=${lat}&lon=${lon}`;
+    var queryURL = `https://api.openweathermap.org/data/2.5/uvi?appid=${apiKey}&lat=${lat}&lon=${lon}`;
 
     $.ajax({
         url: queryURL,
@@ -65,7 +79,19 @@ function uvIndex(lat, lon) {
     }).then(function (response) {
         console.log(response);
 
-        var uvI = $("<p>").text("UV Index: " + response.value).css("color", "red");
+        var uvIndexVal= response.value;
+        var color;
+
+        if (uvIndexVal <= 2) {
+            color= "green"
+        } else if (uvIndexVal >=3 && uvIndexVal <=5) {
+            color= "orange"
+        } else {
+            color= "red"
+        }
+
+        var uvI = $("<p>").text("UV Index: " + response.value).css("color", color);
+        console.log(response.value);
 
         $("#uv-index").append(uvI);
 
