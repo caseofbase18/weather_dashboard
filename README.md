@@ -3,5 +3,5 @@ Welcome to my Weather Dashboard!  This dashboard was created using OpenWeather A
 
 Deployed: https://caseofbase18.github.io/weather_dashboard/
 
-Screenshot: <img src="./assets/weather_dashboard.png">
+<img src="./assets/weather_dashboard.png">
 
